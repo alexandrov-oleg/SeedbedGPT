@@ -4,7 +4,10 @@ import List from "../../components/List/List"
 import AnswerListItem from "../../components/List/BotAnswerListItem"
 import QuestionListItem from "../../components/List/UserQuestionListItem"
 import ChatInput from "./ChatInput"
-import { useLazyGetCompletionQuery } from "./chat-api"
+import {
+  useLazyGetCompletionQuery,
+  useLazyGetCompletionLCQuery,
+} from "./chat-api"
 import { responseToDialogItem } from "./utills"
 import { useAppSelector, useAppDispatch } from "../../app/hooks"
 import { addDialogItem, selectDialog, setDialog } from "./chat-slice"
@@ -17,9 +20,17 @@ export type DialogItem = {
   rawAnswer?: OpenAI.Chat.Completions.ChatCompletion
 }
 
-function ChatPanel() {
+function ChatPanel(props: { isLC?: boolean }) {
+  const { isLC } = props
   const dispatch = useAppDispatch()
-  const [triggerPrompt, query] = useLazyGetCompletionQuery()
+
+  const [triggerPromptOpenAI, queryOpenAI] = useLazyGetCompletionQuery()
+  const [triggerPromptLC, queryLC] = useLazyGetCompletionLCQuery()
+
+  const [triggerPrompt, query] = isLC
+    ? [triggerPromptLC, queryLC]
+    : [triggerPromptOpenAI, queryOpenAI]
+
   const dialog = useAppSelector(selectDialog)
   const [userInput, setUserInput] = useState("")
 

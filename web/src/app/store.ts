@@ -1,7 +1,7 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"
 import chatSettingsReducer from "../features/settings/settings-slice"
 import chatReducer from "../features/chat/chat-slice"
-import { chatApi } from "../features/chat/chat-api"
+import { chatApi, chatApiLC } from "../features/chat/chat-api"
 import { localStorageMiddleware, preloadState } from "./localstorage-middleware"
 import { baseApi } from "../api/api"
 
@@ -12,6 +12,7 @@ export const store = configureStore({
     settings: chatSettingsReducer,
     [baseApi.reducerPath]: baseApi.reducer,
     [chatApi.reducerPath]: chatApi.reducer,
+    [chatApiLC.reducerPath]: chatApiLC.reducer,
   },
   preloadedState: preloadState(),
   middleware: (getDefaultMiddleware) => {
@@ -20,6 +21,7 @@ export const store = configureStore({
       localStorageMiddleware.middleware,
       chatApi.middleware,
       baseApi.middleware,
+      chatApiLC.middleware,
     ]
   },
 })

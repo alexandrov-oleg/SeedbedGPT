@@ -134,4 +134,18 @@ export const chatApi = createApi({
   }),
 })
 
+export const chatApiLC = createApi({
+  reducerPath: "chatApiLC",
+  baseQuery: remoteBotProvider(),
+  endpoints: (builder) => ({
+    getCompletionLC: builder.query<BotRawResponse, BotQuery>({
+      query: (body) => ({
+        url: "completions/create-lc",
+        body,
+      }),
+    }),
+  }),
+})
+
 export const { useLazyGetCompletionQuery } = chatApi
+export const { useLazyGetCompletionLCQuery } = chatApiLC

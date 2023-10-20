@@ -19,9 +19,9 @@ import Jobs from "./features/jobs/Jobs"
 import Job from "./features/jobs/Job"
 import { NewJob } from "./features/jobs/NewJob"
 
-import logo from "../assets/gpt-logo.png";
+import logo from "../assets/gpt-logo.png"
 
-const PAGES = ["chat", "settings", "jobs"]
+const PAGES = ["chat", "chat-lc", "settings", "jobs"]
 
 const Layout = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null)
@@ -52,7 +52,7 @@ const Layout = () => {
             <NavLink to="/chat">
               <img src={logo} className="gpt-logo" />
             </NavLink>
-  
+
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"
@@ -139,6 +139,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Chat />} />
         <Route path="chat" element={<Chat />} />
+        <Route path="chat-lc" element={<Chat isLC={true} />} />
         <Route path="settings" element={<Settings />} />
         <Route path="jobs" element={<Jobs />} />
         <Route path="job/:id" element={<Job />} />

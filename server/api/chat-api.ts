@@ -1,4 +1,5 @@
-import * as botApi from '../bot-engine.js';
+import * as botApi from '../bot-engine';
+import { chatCompletionLC } from "../lang-chain-bot";
 
 const api = [
     {
@@ -107,6 +108,33 @@ const api = [
             }
         },
     },
+
+  {
+    endpoint: "completions/create-lc",
+    method: "POST",
+    handler: async (req: any, res: any) => {
+      let error;
+      let data;
+
+      if (req.body) {
+        try {
+          console.log(JSON.stringify(req.body));
+          data = await chatCompletionLC(req.body);
+        } catch (e) {
+          console.log(e);
+          error = e;
+        }
+      } else {
+        error = new Error("No text provided");
+      }
+
+      if (error) {
+        res.status(500).send(error);
+      } else {
+        res.send(data);
+      }
+    },
+  },
 ];
 
 export default api;

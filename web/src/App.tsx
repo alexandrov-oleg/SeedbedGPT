@@ -19,6 +19,8 @@ import Jobs from "./features/jobs/Jobs"
 import Job from "./features/jobs/Job"
 import { NewJob } from "./features/jobs/NewJob"
 
+import logo from "../assets/gpt-logo.png";
+
 const PAGES = ["chat", "settings", "jobs"]
 
 const Layout = () => {
@@ -47,21 +49,10 @@ const Layout = () => {
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/chat"
-              sx={{
-                mr: 2,
-                fontWeight: 700,
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              Cypress GPT
-            </Typography>
-
+            <NavLink to="/chat">
+              <img src={logo} className="gpt-logo" />
+            </NavLink>
+  
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
               <IconButton
                 size="large"

@@ -62,7 +62,7 @@ const Layout = () => {
                 textDecoration: "none",
               }}
             >
-              Seedbed GPT
+              Cypress GPT
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

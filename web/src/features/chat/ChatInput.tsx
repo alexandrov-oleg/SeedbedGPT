@@ -1,6 +1,7 @@
 import Stack from "@mui/material/Stack"
 import TextField from "@mui/material/TextField"
 import SubmitButton from "./SubmitButton"
+import { dataSets } from "../settings/data-sets"
 
 type InputProps = {
   onSubmit: () => void
@@ -11,8 +12,12 @@ type InputProps = {
 
 const actions = [
   {
-    name: "send", // main action
-    label: "Send",
+    name: "gherkin",
+    label: "Gherkin Prompt",
+  },
+  {
+    name: "cypress",
+    label: "Cypress Prompt",
   },
   {
     name: "clear",
@@ -28,10 +33,12 @@ function ChatInput({ value, onSubmit, onChange, onClear }: InputProps) {
   }
 
   const onButtonClick = (action: string) => {
-    if (action === "send") {
-      onSubmit()
+    if (action === "gherkin" || action === "cypress") {
+      onChange(dataSets[action].prompt.trim())
     } else if (action === "clear") {
       onClear()
+    } else if (action === "send") {
+      onSubmit()
     }
   }
 

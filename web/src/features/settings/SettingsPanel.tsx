@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
 import FormControlLabel from "@mui/material/FormControlLabel"
 import Checkbox from "@mui/material/Checkbox"
-
+import ButtonGroup from "@mui/material/ButtonGroup"
 import { useAppSelector, useAppDispatch } from "../../app/hooks"
 import {
   setSystemRole,
@@ -13,6 +13,7 @@ import {
   setIncludeHistory,
   resetSettings,
 } from "./settings-slice"
+import { dataSets } from "./data-sets"
 
 const nameActionMap = {
   systemRole: setSystemRole,
@@ -69,6 +70,10 @@ function SettingsPanel() {
     }
   }
 
+  const onSetChange = (value: "gherkin" | "cypress") => {
+    dispatch(setSystemRole(dataSets[value].system.trim()))
+  }
+
   return (
     <Stack spacing={2} alignItems="stretch">
       <TextField
@@ -76,10 +81,14 @@ function SettingsPanel() {
         autoComplete="off"
         label="System Role"
         multiline={true}
-        rows={8}
+        rows={6}
         value={systemRole}
         onChange={onChange}
       />
+      <ButtonGroup>
+        <Button onClick={() => onSetChange("gherkin")}>Role "Gherkin"</Button>
+        <Button onClick={() => onSetChange("cypress")}>Role "Cypress"</Button>
+      </ButtonGroup>
       <TextField
         name="trainingDialog"
         autoComplete="off"
@@ -119,7 +128,7 @@ function SettingsPanel() {
             name="includeHistory"
           />
         }
-        label="Attach a dialog history to prompts"
+        label="Attach dialog history to prompts"
       />
       <Button variant="outlined" onClick={() => onResetClick()}>
         Reset to defaults

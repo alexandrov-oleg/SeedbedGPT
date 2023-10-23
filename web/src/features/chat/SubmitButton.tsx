@@ -20,7 +20,7 @@ export default function SplitButton({
   const anchorRef = React.useRef<HTMLDivElement>(null)
 
   const handleClick = () => {
-    onAction(options[0].name)
+    onAction("send")
   }
 
   const handleMenuItemClick = (

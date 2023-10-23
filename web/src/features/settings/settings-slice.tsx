@@ -14,7 +14,7 @@ const initialState: ChatSettings = {
   systemRole:
     "Act as a quality analyst who is highly experienced in behavioral driven development and developing well-constructed Gherkin Scenarios from supplied requirements.",
   model: "gpt-3.5-turbo",
-  temperature: 0,
+  temperature: 0.1,
   trainingDialog: "",
   includeHistory: true,
 }

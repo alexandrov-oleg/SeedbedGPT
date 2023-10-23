@@ -61,3 +61,8 @@ body {
 .list-item-pre {
   white-space: pre-wrap !important;
 }
+
+.gpt-logo {
+  width: 70px;
+  height: 70px;
+}

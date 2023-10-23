@@ -1,7 +1,8 @@
 export const dataSets = {
   cypress: {
+    model: "gpt-4",
     system: `
-Act as a quality analyst an AI programming assistant who is highly experienced in gherkin and cypress. Write chunks of code without backticks. You should return the modified response in its entirety, not just the changed lines. Additional information, including the HTML elements that need interaction, will be provided in the future.
+Act as a quality analyst and AI programming assistant who is highly experienced in gherkin and cypress. Write chunks of code without backticks. You should return the modified response in its entirety, not just the changed lines. Additional information, including the HTML elements that need interaction, will be provided in the future.
 When searching for an element in HTML, do not use data-id attributes.
 
 Additional information:
@@ -151,6 +152,7 @@ I want you to create a user story and Cypress tests for the scenario of a user l
     `,
   },
   gherkin: {
+    model: "gpt-3.5-turbo",
     system: `
     Act as a quality analyst who is highly experienced in behavioral driven development. Develop well-constructed Cypress test from provided Gherkin Scenario. Result should contain on required methods and functions for current scenario.
     - It is single scenario.

@@ -71,7 +71,9 @@ function SettingsPanel() {
   }
 
   const onSetChange = (value: "gherkin" | "cypress") => {
-    dispatch(setSystemRole(dataSets[value].system.trim()))
+    const dataSet = dataSets[value]
+    dispatch(setSystemRole(dataSet.system.trim()))
+    dispatch(setModel(dataSet.model))
   }
 
   return (
